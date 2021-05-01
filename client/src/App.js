@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Cssbaseline,
   Container,
   Grid,
   AppBar,
@@ -10,10 +9,11 @@ import {
   IconButton,
   CssBaseline,
 } from "@material-ui/core";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import PenIcon from "@material-ui/icons/Create"
-import {BrowserRouter as Router ,Switch,Route,Redirect} from "react-router-dom"
-import PostsList from "./component/PostsList" 
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import PostsList from "./component/PostsList"
+import AddPostForm from "./component/AddPostForm"
 
 
 
@@ -32,6 +32,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 const App = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const classes = useStyles();
   return (
     <>
@@ -40,18 +49,21 @@ const App = () => {
         <AppBar position="static" color="inherit" elevation={0}>
           <Toolbar>
             <IconButton
-             edge="start" 
-             className={classes.container}
-             color="inherit"
-             />
+              edge="start"
+              className={classes.container}
+              color="inherit"
+            />
 
             <Typography variant="h6" color="secondary" className={classes.title}>
               <a href="http://localhost:3000/posts">MyBlogApp</a>
             </Typography>
-            <Button color ="primary" variant="outlined" startIcon={<PenIcon/>}>
+            <Button onClick={handleOpen} color="primary" variant="outlined" startIcon={<PenIcon />}
+            >
               Yeni Yazı
             </Button>
+
             
+
           </Toolbar>
         </AppBar>
 
@@ -66,6 +78,8 @@ const App = () => {
           </Grid>
 
         </Grid>
+
+        <AddPostForm open={open} handleClose={handleClose} />
       </Container>
     </>
   );
