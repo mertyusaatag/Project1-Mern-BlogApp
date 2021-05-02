@@ -1,7 +1,7 @@
 import * as types from "./types";
 import * as api from "../api/index"
 
-export const fetchPosts =async (dispatch) =>
+export const fetchPosts =  async (dispatch) =>
 {
     try {
         const {data} = await api.fetchPosts();

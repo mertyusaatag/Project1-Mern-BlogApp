@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import {
   Container,
   Grid,
@@ -14,7 +14,8 @@ import PenIcon from "@material-ui/icons/Create"
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import PostsList from "./component/PostsList"
 import AddPostForm from "./component/AddPostForm"
-
+import {useDispatch} from "react-redux"
+import { fetchPosts } from "./actions/post";
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,6 +33,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 const App = () => {
+  const dispatch=useDispatch();
+useEffect(() => {
+dispatch(fetchPosts)
+},[dispatch])
+
+
+
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
