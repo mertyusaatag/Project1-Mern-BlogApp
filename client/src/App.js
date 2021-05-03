@@ -16,6 +16,7 @@ import PostsList from "./component/PostsList"
 import AddPostForm from "./component/AddPostForm"
 import {useDispatch} from "react-redux"
 import { fetchPosts } from "./actions/post";
+import PostDetails from "./component/PostDetails";
 
 
 const useStyles = makeStyles(theme => ({
@@ -81,6 +82,7 @@ dispatch(fetchPosts)
             <Router>
               <Switch>
                 <Route exact path="/posts" component={PostsList} ></Route>
+                <Route exact path="/posts/:id" component={PostDetails} ></Route>
               </Switch>
               <Redirect from="/" to="/posts"></Redirect>
             </Router>

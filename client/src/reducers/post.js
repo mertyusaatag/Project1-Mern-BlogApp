@@ -1,7 +1,8 @@
 import * as types from "../actions/types"
 
 const initialState = {
-    posts:[]
+    posts:[],
+    currentPost:null
 }
 
 const postReducer = (state = initialState,action) =>
@@ -11,6 +12,12 @@ const postReducer = (state = initialState,action) =>
             return{
                 ...state,
                 posts: action.payload,
+            };
+
+            case types.FETCH_SINGLE_POST:
+            return{
+                ...state,
+                currentPost: action.payload,
             };
             
             case types.CREATE_POST:
